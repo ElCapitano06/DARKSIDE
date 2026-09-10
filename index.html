@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chart & Key — Patient Records Demo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+
+  <header class="top">
+    <h1>Chart &amp; Key</h1>
+    <span class="mark">PROTOTYPE — CLIENT DEMO</span>
+  </header>
+
+  <div class="warn">
+    <strong>Demo only.</strong> This is a prototype backed by a free Firebase project.
+    Records are locked with a 6-digit PIN — better than 4 digits, but still not real
+    security or HIPAA/DPDP-grade protection. Don't enter real names, real Aadhaar
+    digits, or real medical information.
+  </div>
+
+  <nav class="tabs">
+    <button class="active" data-tab="patient">I'm a patient</button>
+    <button data-tab="doctor">I'm a doctor</button>
+  </nav>
+
+  <!-- PATIENT TAB -->
+  <section id="patient" class="active">
+    <h2>Add a medical record</h2>
+    <p class="lede">Fill this in once. You'll get a Patient ID to give your doctor, plus a 6-digit PIN — share the PIN separately, and only with the doctor you want to have access.</p>
+
+    <form id="patientForm">
+      <div class="row2">
+        <div>
+          <label for="pName">Full name</label>
+          <input type="text" id="pName" required placeholder="e.g. Test Patient">
+        </div>
+        <div>
+          <label for="pCode">Choose a 6-digit PIN</label>
+          <input type="text" id="pCode" class="code-input" required maxlength="6" pattern="\d{6}" placeholder="000000">
+        </div>
+      </div>
+
+      <div class="row2">
+        <div>
+          <label for="pDob">Date of birth</label>
+          <input type="date" id="pDob">
+        </div>
+        <div>
+          <label for="pBlood">Blood group</label>
+          <input type="text" id="pBlood" placeholder="e.g. O+">
+        </div>
+      </div>
+
+      <label for="pAllergies">Allergies</label>
+      <textarea id="pAllergies" placeholder="e.g. Penicillin, peanuts"></textarea>
+
+      <label for="pConditions">Ongoing conditions</label>
+      <textarea id="pConditions" placeholder="e.g. Type 2 diabetes, hypertension"></textarea>
+
+      <label for="pMeds">Current medications</label>
+      <textarea id="pMeds" placeholder="e.g. Metformin 500mg twice daily"></textarea>
+
+      <label for="pNotes">Notes for doctors</label>
+      <textarea id="pNotes" placeholder="Anything else worth flagging"></textarea>
+
+      <button type="submit" class="primary">Save record</button>
+    </form>
+
+    <div id="patientResult"></div>
+  </section>
+
+  <!-- DOCTOR TAB -->
+  <section id="doctor">
+    <h2>Look up a patient</h2>
+    <p class="lede">Search by name to find the record, then enter the 6-digit PIN the patient gave you to unlock it.</p>
+
+    <label for="dSearch">Patient name</label>
+    <input type="text" id="dSearch" placeholder="Start typing a name...">
+    <button class="secondary" id="dSearchBtn" style="margin-top:10px;">Search</button>
+
+    <div id="matchList" class="match-list"></div>
+
+    <div id="unlockBox" style="display:none;">
+      <hr class="divider">
+      <h2 id="unlockName">Unlock record</h2>
+      <p class="lede" id="unlockSub"></p>
+      <label for="dCode">6-digit PIN</label>
+      <input type="text" id="dCode" class="code-input" maxlength="6" pattern="\d{6}" placeholder="000000">
+      <button class="primary" id="unlockBtn">View record</button>
+      <div id="unlockResult"></div>
+    </div>
+  </section>
+
+  <footer>Chart &amp; Key · prototype build · data lives in your own Firebase project, not a real medical database</footer>
+</div>
+
+<!-- Firebase (compat build — no bundler needed, works on GitHub Pages) -->
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
