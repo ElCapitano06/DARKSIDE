@@ -1,0 +1,7 @@
+{
+  "name": "Lala Ops",
+  "description": "AI-powered operations management platform for Lala Tech LLC to capture unstructured requests, extract tasks with AI, assign work, and track real-time operational performance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
